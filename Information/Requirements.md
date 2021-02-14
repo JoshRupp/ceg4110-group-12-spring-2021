@@ -1,4 +1,4 @@
-##Discord Bot: Monster Hunter World
+## Discord Bot: Monster Hunter World
 
 Monster Hunter: World (MHW) is a game, playable on console and PC, that is about hunting monsters to gather resources,
 stop eco-disasters, or prevent extinction level events. In order to complete quests in the game, players need to acquire
