@@ -27,3 +27,6 @@ Req ID      Requirement
 150         The bot shall allow privileged users edit data to the database  
 160         The bot shall allow users to track the monsters they have killed  
 170         The bot shall allow users to track the monsters that have killed them  
+180         The bot shall allow users to search for ailments  
+190         The bot shall allow the player to look up armor pieces
+200         The bot shall allow the player to look up skills
