@@ -29,4 +29,7 @@ Req ID      Requirement
 170         The bot shall allow users to track the monsters that have killed them  
 180         The bot shall allow users to search for ailments  
 190         The bot shall allow the player to look up armor pieces
-200         The bot shall allow the player to look up skills
+200         The bot shall allow the player to look up skills  
+210         The bot shall display an error when no results are found
+220         The bot shall display object specific data when only one results is returned
+230         The bot shall display a list of results when more than one result is returned 
