@@ -7,4 +7,5 @@ Action 6 “Setup information folder and file”
 Action 7 “Edit ReadMe.md”  
 Action 8 "Design 5 requirements"  
 Action 9 "Install developement environment" (Docker, Postman, Python/Pycharm, git)  
-Action 10 " Design specific returns"  
+Action 10 "Design specific returns"  
+Action 11 "Design visual appearance of results"  
