@@ -9,3 +9,7 @@ Action 8 "Design 5 requirements"
 Action 9 "Install developement environment" (Docker, Postman, Python/Pycharm, git)  
 Action 10 "Design specific returns"  
 Action 11 "Design visual appearance of results"  
+Action 12 "Research basic python to/from discord communication"  
+Action 13 "Implement basic python/discord communication"  
+Action 14 "Write back end for Ailments"  
+Action 15 "Write front end for Ailments"  
