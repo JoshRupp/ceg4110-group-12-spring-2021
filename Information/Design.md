@@ -62,8 +62,25 @@
 
 **070 The bot shall be able to provide a list of products the vendor sells**
 
+**Requirement 080: Upon user input, the bot shall be able to display the currently active events**  
+  Command: `-events`  
+  Return: A list of active events.  
+  
+**Requirement 090: The bot shall be able to display what monsters appear and at what difficulty within the ecosystem specified by the user**  
+  Command: `-location [ecosystem][rank]`  
+  Return: The monster availabale in the ecosystem at the rank specified by the user.  
+  
+**Requirement 100: The bot shall be able to provide information about permanently equipped tools**  
+  Command: `-hunter tools`  
+	Return: Small description of each fixed hunter tool (i.e. scout flies, clutch claw, etc)  
 
+**Requirement 110: The bot shall be able to provide a random tip or advice when prompted by the user**  
+	Command: `-tip`  
+	Return: A random tip about gameplay (i.e. environment use, hunting strategy, etc.)  
 
+**Requirement 120: The bot shall be able to display which monsters are available at which level in the area of the guiding lands specified by the user**  
+	Command: `-Guiding [area] [level]`  
+	Return: Monsters that spawn in “area” at “level”  
 
 #Backend
 
