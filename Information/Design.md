@@ -62,25 +62,49 @@
 
 **070 The bot shall be able to provide a list of products the vendor sells**
 
-**Requirement 080: Upon user input, the bot shall be able to display the currently active events**  
-  Command: `-events`  
-  Return: A list of active events.  
+**Requirement 080**  
+  Command: `-events [id]`  
+  Return:
+- If no input, returns a list of events:
+    - id
+    - Name
+- If id is given:
+    - Name
+    - description
+    - startTimeStamp
+    - endTimeStamp
   
-**Requirement 090: The bot shall be able to display what monsters appear and at what difficulty within the ecosystem specified by the user**  
-  Command: `-location [ecosystem][rank]`  
-  Return: The monster availabale in the ecosystem at the rank specified by the user.  
-  
-**Requirement 100: The bot shall be able to provide information about permanently equipped tools**  
+**Requirement 090**  
+  Command: `-location [ecosystem] [rank]`  
+  Return: 
+- If no input is entered returns a list of ecosystems:
+    - id
+    - name
+- If only the ecosystem is passed, nothing should be returned as the result could give inaccurate information
+- If ecosystem and rank are passed, return a list of monsters in that ecosystem at that rank
+    - id
+    - Name
+
+**Requirement 100**  
   Command: `-hunter tools`  
-	Return: Small description of each fixed hunter tool (i.e. scout flies, clutch claw, etc)  
+	Return:  
+- Name
+- Description
 
-**Requirement 110: The bot shall be able to provide a random tip or advice when prompted by the user**  
+**Requirement 110**  
 	Command: `-tip`  
-	Return: A random tip about gameplay (i.e. environment use, hunting strategy, etc.)  
+	Return: A random tip about gameplay  
 
-**Requirement 120: The bot shall be able to display which monsters are available at which level in the area of the guiding lands specified by the user**  
+**Requirement 120**  
 	Command: `-Guiding [area] [level]`  
-	Return: Monsters that spawn in “area” at “level”  
+	Return:  
+- If no area or level is passed, return areas in the guiding lands:
+    - id
+    - Name 
+- If only one parameter is passed, return nothing to avoid giving incorrect information
+- If both parameters are passed return a list of monsters in the area at that level
+    - id
+    - Name
 
 #Backend
 
