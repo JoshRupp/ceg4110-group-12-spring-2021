@@ -63,48 +63,47 @@
 **070 The bot shall be able to provide a list of products the vendor sells**
 
 **Requirement 080**  
-  Command: `-events [id]`  
-  Return:
-- If no input, returns a list of events:
-    - id
-    - Name
-- If id is given:
-    - Name
-    - description
-    - startTimeStamp
-    - endTimeStamp
+- Command: `-events [id]` 
+    - Parameter is optional 
+- Return:
+    - If no input, returns a list of events:
+      - id
+      - Name
+    - If id is given:
+        - Name
+        - description
+        - startTimeStamp
+        - endTimeStamp
   
 **Requirement 090**  
-  Command: `-location [ecosystem] [rank]`  
-  Return: 
-- If no input is entered returns a list of ecosystems:
-    - id
-    - name
-- If only the ecosystem is passed, nothing should be returned as the result could give inaccurate information
-- If ecosystem and rank are passed, return a list of monsters in that ecosystem at that rank
-    - id
-    - Name
+- Command: `-location [ecosystem] [rank]`  
+    - parameters are required 
+- Return: 
+    - If no parameters are passed, return a message about how to use the command
+    - If only the ecosystem is passed, nothing should be returned as the result could give inaccurate information
+    - If ecosystem and rank are passed, return a list of monsters in that ecosystem at that rank
+        - id
+        - Name
 
 **Requirement 100**  
-  Command: `-hunter tools`  
-	Return:  
-- Name
-- Description
+- Command: `-hunter tools`
+- Return:  
+    - Name
+    - Description
 
 **Requirement 110**  
-	Command: `-tip`  
-	Return: A random tip about gameplay  
+- Command: `-tip`  
+- Return: A random tip about gameplay  
 
 **Requirement 120**  
-	Command: `-Guiding [area] [level]`  
-	Return:  
-- If no area or level is passed, return areas in the guiding lands:
-    - id
-    - Name 
-- If only one parameter is passed, return nothing to avoid giving incorrect information
-- If both parameters are passed return a list of monsters in the area at that level
-    - id
-    - Name
+- Command: `-Guiding [area] [level]`
+  - Parameters are required 
+- Return:  
+    - If no argument is passed, return how to use the command
+    - If only one parameter is passed, return nothing to avoid giving incorrect information
+    - If both parameters are passed return a list of monsters in the area at that level
+        - id
+        - Name
 
 #Backend
 
