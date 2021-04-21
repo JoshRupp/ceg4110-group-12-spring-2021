@@ -18,17 +18,20 @@ class OutputTable:
         self.rowSym = "-"
         self.intersectionChar = "+"
         self.outputString = ""
-        self.maxWordLen = maxRowWidth
-        self.maxRowWidth = maxRowWidth
-        self.columnWidth = []
         self.tableSize = len(self.table)
         self.headerSize = 0
+        self.getHeaderSize()
+        self.maxWordLen = int(maxRowWidth / self.headerSize)
+        self.maxRowWidth = maxRowWidth
+        self.columnWidth = []
+
+
 
 
 
     def getHeaderSize(self):
 
-        if self.tableSize:
+        if self.tableSize > 0:
             self.headerSize = len(self.table[0])
 
 
@@ -230,7 +233,7 @@ table = [["Name", "Email", "Location", "Occupation"],
          ["Smith, James", "james.smithk@wright.edu", "Clemson", "Stripper"],
 ]
 
-myTable = OutputTable(table, 20)
+myTable = OutputTable(table, 80)
 
 myTable.createStringOfTable()
 
