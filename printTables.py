@@ -227,17 +227,17 @@ class OutputTable:
 
 
 
-table = [["Name", "Email", "Location", "Occupation"],
-         ["Rupp, Josh", "JMan@yahoo.com", "Atlanta", "Police Officer"],
-         ["Buck, Eric", "erick.buck@wright.edu", "Dayton", "Professor"],
-         ["Smith, James", "james.smithk@wright.edu", "Clemson", "Stripper"],
-]
-
-myTable = OutputTable(table, 80)
-
-myTable.createStringOfTable()
-
-print(myTable.outputString)
+# table = [["Name", "Email", "Location", "Occupation"],
+#          ["Rupp, Josh", "JMan@yahoo.com", "Atlanta", "Police Officer"],
+#          ["Buck, Eric", "erick.buck@wright.edu", "Dayton", "Professor"],
+#          ["Smith, James", "james.smithk@wright.edu", "Clemson", "Stripper"],
+# ]
+#
+# myTable = OutputTable(table, 80)
+#
+# myTable.createStringOfTable()
+#
+# print(myTable.outputString)
 
 
 
