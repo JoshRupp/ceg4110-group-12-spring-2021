@@ -1,14 +1,14 @@
 
 #Frontend
 
-**010 The bot shall be able to provide an informational overview of the game**
+**REQ: 010**
 
 - Command: `-overview`
 - Return: A paragraph explaining the game Monster Hunter World
 
-**020 The bot shall be able to display information about the monster specified by the user input**
+**REQ: 020**
 
-- Command: `-monster <id>|<name> (page)` 
+- Command: `-monsters <id>|<name> (page)` 
   - The required field will be either a number (id) or a string (name).
   - There is then an optional field that provides a page number if previous results went past current page limit.
 - Return: 
@@ -30,9 +30,9 @@
         - Type
         - Description
 
-**030 The bot shall be able to display information for the weapon specified by the user input**
+**REQ: 030**
 
-- Command: `-weapon <id>|<name> (page)`
+- Command: `-weapons <id>|<name> (page)`
     - The required field will be either a number (id) or a string (name).
     - There is then an optional field that provides a page number if previous results went past current page limit.
 - Return:
@@ -54,20 +54,67 @@
         - Type
         - Attack
     
-**040 The bot shall be able to display information about the material specified by the user input**
+**REQ: 040**
+- Command: `-material <id>|<name> (page)`
+    - The required field will be either a number (id) or a string (name).
+    - There is then an optional field that provides a page number if previous results went past current page limit.
+- Return:
+    - If no input is provided then display instructions on how to use the command
+    - If none returned then say no material found
+    - If returns one material it will list:
+        - Name
+        - Type
+        - Description
+        - Usages
+        - Crafting
+        - Locations
+    - If returns more than one material it will list in a table:
+        - ID
+        - Name
+        - Description
 
-**050 The bot shall be able to take and save user input for combinations of weapon, armor, and decorations**
+**REQ: 050**
+- Command: `-kit {<weapon>, <armor>, <decorations>}`
+    - The required field will be some combination of a weapon, armor, and decorations
+- Return:
+    - If no input is provided then it will display the current user's kit.
+        - If the current user does not have a kit, it will display how to use the command
+    - If any input is provided, it will save this data for the specific user
+        - Output message saying kit was saved.
 
-**060 The bot shall be able to provide a list of vendors and where to find them**
-
-**070 The bot shall be able to provide a list of products the vendor sells**
-
+**REQ: 060**
+- Command: `-vendors (page)`
+    - There is then an optional field that provides a page number if previous results went past current page limit.
+- Return:
+    - If no input is provided then display the first 5 vendors information:
+        - Id
+        - Name
+        - Location
+    - If a page number is specified, it will lists the 5 vendors for that page
+        - If the page number mulitiplied by 5 is greater then the number of vendors, display page error
+   
+**REQ: 070**
+- Command: `-soldby <id>|<name> (page)`
+    - The required field will be either a number (id) or a string (name).
+    - There is then an optional field that provides a page number if previous results went past current page limit.
+- Return:
+    - If no input is provided then display instructions on how to use the command
+    - If none returned then say no products found
+    - If returns one product it will list:
+        - Name
+        - Type
+        - Description
+    - If returns more than one product it will list in a table:
+        - ID
+        - Name
+        - Type
+        - Description
 
 
 
 #Backend
 
-**240 The Backend shall be a REST API providing information related to the Monster Hunter World game.**
+**REQ: 240**
 
 - Option 1: https://github.com/MattJarman/mhw-api
     - Pro: Database in sqlite, so entire database is in repo
