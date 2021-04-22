@@ -1,4 +1,9 @@
 
+######CEG 4110 Spring 2021  Design.md documentation 
+
+######Joshua Rupp, Kyle Sturdevant, Trenton Brown --> Group 12
+
+
 #Frontend
 
 **010 The bot shall be able to provide an informational overview of the game**
@@ -61,88 +66,6 @@
 **060 The bot shall be able to provide a list of vendors and where to find them**
 
 **070 The bot shall be able to provide a list of products the vendor sells**
-
-
-
-
-#Backend
-
-**240 The Backend shall be a REST API providing information related to the Monster Hunter World game.**
-
-- Option 1: https://github.com/MattJarman/mhw-api
-    - Pro: Database in sqlite, so entire database is in repo
-    - Con: API only provides 3 endpoints with very limited information
-    - Summary: After installing Docker and getting this running, the limits in the REST API 
-      make using this backend difficult. It doesn't support all the end points the other API 
-      supports, and appears to have fewer categories of data. I would not recommend for this project.
-- Option 2: https://github.com/LartTyler/MHWDB-API
-    - Pro: Many endpoints with good documentation [here](https://docs.mhw-db.com/)
-    - Con: MySql database which doesn't appear to be provided
-    - Summary: After installing Vagrant and getting this API up, I found the README instructions impossible to complete. 
-      The instructions said to run "./db-reset.sh latest", but this 'db-reset.sh' file doesn't exist in the repo. 
-      So, when making calls to the API running locally, it fails with a database error as the database isn't 
-      configured correctly. This could be an alternative solution, if the database was populated.
-- Option 3: Use https://mhw-db.com directly
-    - Pro: We don't need to run and host our own REST API
-    - Pro: All the endpoints documented [here](https://docs.mhw-db.com/) are available. 
-    - Con: We are unable to change the backend if needed. 
-    - Summary: The documentation shows this REST API should provide all the features we require 
-      and is publicly accessible. Using the already provided API and hosting, this option would require less resources 
-      than if we were to run our own REST API backend. At this time, this is the suggested backend.
-
-
-
-
-#Design.md by Joshua Rupp
-
-######CEG 4110 Spring 2021 
-
-######Joshua Rupp, Kyle Sturdevant, Trenton Brown --> Group 12
-
-######Overview of what you will find in this document:
-
-[Five requirements of Group 12's Google Doc which can be found at:]
- 
-(https://docs.google.com/document/d/1LdCnvcZ_LXHHckbBnyPZtQZOH8F8qjPd47igwdDOoVs/edit)
-
-There are 18 total requirements for this project for building and implementing a _Discord
-bot_ for the _Monster Hunter World_ Video Game. This document specifically focuses on the 
-description, of the design process, for the following requirements. 
-
-**REQ 130** 
-
-_The bot shall be able to provide the recipe for the craft-able item requested by the user_
-
-
-**REQ 140**
-
-_The bot shall allow privileged users add data to the database_
-
-
-**REQ 150**
-
-
-_The bot shall allow privileged users edit data to the database_
-
-
-
-**REQ 160**
-
-_The bot shall allow users to track the monsters they have killed_
-
-
-**REQ 170**
-
-_The bot shall allow users to track the monsters that have killed them_
-
-
-**REQ 180**
-
-_The bot shall be able to display a list of all available commands supported by the bot_
- 
-
-------------------------------------------------------------------------------------------
-
 
 ######REQ 130 Design: 
 
@@ -400,6 +323,45 @@ only one structure is needed.
 examples of _help_ command usage:
 
 `-help`
+
+
+#Backend
+
+**240 The Backend shall be a REST API providing information related to the Monster Hunter World game.**
+
+- Option 1: https://github.com/MattJarman/mhw-api
+    - Pro: Database in sqlite, so entire database is in repo
+    - Con: API only provides 3 endpoints with very limited information
+    - Summary: After installing Docker and getting this running, the limits in the REST API 
+      make using this backend difficult. It doesn't support all the end points the other API 
+      supports, and appears to have fewer categories of data. I would not recommend for this project.
+- Option 2: https://github.com/LartTyler/MHWDB-API
+    - Pro: Many endpoints with good documentation [here](https://docs.mhw-db.com/)
+    - Con: MySql database which doesn't appear to be provided
+    - Summary: After installing Vagrant and getting this API up, I found the README instructions impossible to complete. 
+      The instructions said to run "./db-reset.sh latest", but this 'db-reset.sh' file doesn't exist in the repo. 
+      So, when making calls to the API running locally, it fails with a database error as the database isn't 
+      configured correctly. This could be an alternative solution, if the database was populated.
+- Option 3: Use https://mhw-db.com directly
+    - Pro: We don't need to run and host our own REST API
+    - Pro: All the endpoints documented [here](https://docs.mhw-db.com/) are available. 
+    - Con: We are unable to change the backend if needed. 
+    - Summary: The documentation shows this REST API should provide all the features we require 
+      and is publicly accessible. Using the already provided API and hosting, this option would require less resources 
+      than if we were to run our own REST API backend. At this time, this is the suggested backend.
+
+
+
+
+
+
+
+
+
+------------------------------------------------------------------------------------------
+
+
+
 
 
 
