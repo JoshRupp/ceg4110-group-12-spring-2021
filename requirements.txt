@@ -1,0 +1,5 @@
+discord
+replit
+requests
+pytest
+coverage
