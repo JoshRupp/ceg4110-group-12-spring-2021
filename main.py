@@ -4,7 +4,7 @@ import command
 import running
 from replit import db
 
-TOKEN = db["bot-token"]
+TOKEN = db["BOT_KEY"]
 client = discord.Client()
 
 
@@ -16,22 +16,22 @@ async def on_ready():
 
 initialCmd = {
     '-overview': (0, command.overview),
-    '-monster': (1, command.monster, command.helpMonster),
-    '-weapon': (1, command.weapon, command.helpWeapon),
-    '-material': (1, command.material, command.helpMaterial),
-    '-save': (3, command.save, command.helpSave),
+    '-monster': (1, command.monster, command.help_monster),
+    '-weapon': (1, command.weapon, command.help_weapon),
+    '-material': (1, command.material, command.help_material),
+    '-save': (1, command.save, command.help_save),
     '-vendors': (0, command.vendor),
-    '-products': (1, command.products, command.helpProducts),
+    '-products': (1, command.products, command.help_products),
     '-events': (0, command.events),
-    '-location': (2, command.location, command.helpLocation),
-    '-hunter tools': (0, command.huntersTools),
+    '-location': (1, command.location, command.help_location),
+    '-hunter tools': (0, command.hunters_tools),
     '-tip': (0, command.tip),
-    '-guiding': (2, command.guiding, command.helpGuiding),
-    '-item': (3, command.item, command.helpItem),
-    '-defeatedMonster': (1, command.defeatedMonster, command.helpDefeatedMonster),
-    '-whoKilledMe': (1, command.whoKilledMe, command.helpWhoKilledMe),
-    '-armor': (1, command.armor, command.helpArmor),
-    '-skill': (1, command.skill, command.helpSave)
+    '-guiding': (1, command.guiding, command.help_guiding),
+    '-item': (1, command.item, command.help_item),
+    '-defeatedMonster': (1, command.defeated_monster, command.help_defeated_monster),
+    '-whoKilledMe': (1, command.who_killed_me, command.help_who_killed_me),
+    '-armor': (1, command.armor, command.help_armor),
+    '-skill': (1, command.skill, command.help_save)
 }
 
 
@@ -45,14 +45,13 @@ async def on_message(message):
         if initialCmd[cmd][0] == 0:
             response = initialCmd[cmd][1]()
         else:
-          if message.content.split()[0] == message.content:
-            response = initialCmd[cmd][2]()
-          else:
-            param = message.content.split(" ", 1)[1]
-            response = initialCmd[cmd][1](param)
+            if message.content.split()[0] == message.content:
+                response = initialCmd[cmd][2]()
+            else:
+                param = message.content.split(" ", 1)[1]
+                response = initialCmd[cmd][1](param)
 
-
-    if response != None:
+    if response is not None:
         await message.channel.send(response)
 
 
