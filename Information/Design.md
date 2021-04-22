@@ -232,18 +232,13 @@ Monster Hunter World game. Then the Bot prints out an appropriate message to the
 the command is entered without any name, or parameter. Then command does nothing and prints
 out nothing to the user via Discord. 
 
-When this command is entered, it will first prompt the user for the user's account name. This 
-way each user has its own saved list of monsters killed. If the user does not have a valid 
-account name or id then the monster is not saved in any list, and an appropriate message is 
-displayed to the user via discord. The user will have to authenticate themselves via their 
-password as well. This will be the same password as in the Discord server. This way random 
-people belonging to the server this Monster Hunter World bot is associated with. Cannot 
-edit the list of monsters they have killed without the knowledge of the users pass code.
 
 There are 48 total monsters in the Monster Hunter World video game. Thus the maximum size 
-of any monster list will be 48. The smallest size of course would be if there were no 
-monsters killed, thus size = 0. Being how the upper bound of a monster list is 48. 
-printing out to discord should not cause any significant undefined bandwidth issues. 
+of any monster list will be 48. However, the number of monsters can change with the game
+designers providing updates, or changes to the game. As of 04/20/21, however, this number is 
+correct. The smallest size of course would be if there were no monsters killed, thus size = 0.
+Being how the upper bound of a monster list is 48. printing out to discord
+should not cause any significant undefined bandwidth issues. 
 
 Potentially I could have returned a dictionary here instead of a list, however,
 you would have to utilize a value, or key field per cell in a dictionary in the python 
@@ -257,11 +252,7 @@ examples of _my victims_ command usage:
 `-my victims Kulu-Ya-Ku`  -- example with _name_ parameter 
 
 
-example of the _user entry_ aspect of the _my victims_ command:
 
-`Enter user account name: Josh`
-
-`Enter the password for Josh: ********`
 
 ------------------------------------------------------------------------------------------
 
@@ -287,11 +278,6 @@ examples of _gone to soon_ command usage:
 `-gone to soon Kulu-Ya-Ku`  -- example with _name_ parameter 
 
 
-example of the _user entry_ aspect of the _gone to soon_ command:
-
-`Enter user account name: Josh`
-
-`Enter the password for Josh: ********`
 
 
 
