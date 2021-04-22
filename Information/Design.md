@@ -1,14 +1,20 @@
 
+######CEG 4110 Spring 2021 
+
+
+######Joshua Rupp, Kyle Sturdevant, Trenton Brown --> Group 12
+
+
 #Frontend
 
-**010 The bot shall be able to provide an informational overview of the game**
+**REQ: 010**
 
 - Command: `-overview`
 - Return: A paragraph explaining the game Monster Hunter World
 
-**020 The bot shall be able to display information about the monster specified by the user input**
+**REQ: 020**
 
-- Command: `-monster <id>|<name> (page)` 
+- Command: `-monsters <id>|<name> (page)` 
   - The required field will be either a number (id) or a string (name).
   - There is then an optional field that provides a page number if previous results went past current page limit.
 - Return: 
@@ -30,9 +36,9 @@
         - Type
         - Description
 
-**030 The bot shall be able to display information for the weapon specified by the user input**
+**REQ: 030**
 
-- Command: `-weapon <id>|<name> (page)`
+- Command: `-weapons <id>|<name> (page)`
     - The required field will be either a number (id) or a string (name).
     - There is then an optional field that provides a page number if previous results went past current page limit.
 - Return:
@@ -54,92 +60,61 @@
         - Type
         - Attack
     
-**040 The bot shall be able to display information about the material specified by the user input**
+**REQ: 040**
+- Command: `-material <id>|<name> (page)`
+    - The required field will be either a number (id) or a string (name).
+    - There is then an optional field that provides a page number if previous results went past current page limit.
+- Return:
+    - If no input is provided then display instructions on how to use the command
+    - If none returned then say no material found
+    - If returns one material it will list:
+        - Name
+        - Type
+        - Description
+        - Usages
+        - Crafting
+        - Locations
+    - If returns more than one material it will list in a table:
+        - ID
+        - Name
+        - Description
 
-**050 The bot shall be able to take and save user input for combinations of weapon, armor, and decorations**
+**REQ: 050**
+- Command: `-kit {<weapon>, <armor>, <decorations>}`
+    - The required field will be some combination of a weapon, armor, and decorations
+- Return:
+    - If no input is provided then it will display the current user's kit.
+        - If the current user does not have a kit, it will display how to use the command
+    - If any input is provided, it will save this data for the specific user
+        - Output message saying kit was saved.
 
-**060 The bot shall be able to provide a list of vendors and where to find them**
-
-**070 The bot shall be able to provide a list of products the vendor sells**
-
-
-
-
-#Backend
-
-**240 The Backend shall be a REST API providing information related to the Monster Hunter World game.**
-
-- Option 1: https://github.com/MattJarman/mhw-api
-    - Pro: Database in sqlite, so entire database is in repo
-    - Con: API only provides 3 endpoints with very limited information
-    - Summary: After installing Docker and getting this running, the limits in the REST API 
-      make using this backend difficult. It doesn't support all the end points the other API 
-      supports, and appears to have fewer categories of data. I would not recommend for this project.
-- Option 2: https://github.com/LartTyler/MHWDB-API
-    - Pro: Many endpoints with good documentation [here](https://docs.mhw-db.com/)
-    - Con: MySql database which doesn't appear to be provided
-    - Summary: After installing Vagrant and getting this API up, I found the README instructions impossible to complete. 
-      The instructions said to run "./db-reset.sh latest", but this 'db-reset.sh' file doesn't exist in the repo. 
-      So, when making calls to the API running locally, it fails with a database error as the database isn't 
-      configured correctly. This could be an alternative solution, if the database was populated.
-- Option 3: Use https://mhw-db.com directly
-    - Pro: We don't need to run and host our own REST API
-    - Pro: All the endpoints documented [here](https://docs.mhw-db.com/) are available. 
-    - Con: We are unable to change the backend if needed. 
-    - Summary: The documentation shows this REST API should provide all the features we require 
-      and is publicly accessible. Using the already provided API and hosting, this option would require less resources 
-      than if we were to run our own REST API backend. At this time, this is the suggested backend.
-
-
-
-
-#Design.md by Joshua Rupp
-
-######CEG 4110 Spring 2021 
-
-######Joshua Rupp, Kyle Sturdevant, Trenton Brown --> Group 12
-
-######Overview of what you will find in this document:
-
-[Five requirements of Group 12's Google Doc which can be found at:]
- 
-(https://docs.google.com/document/d/1LdCnvcZ_LXHHckbBnyPZtQZOH8F8qjPd47igwdDOoVs/edit)
-
-There are 18 total requirements for this project for building and implementing a _Discord
-bot_ for the _Monster Hunter World_ Video Game. This document specifically focuses on the 
-description, of the design process, for the following requirements. 
-
-**REQ 130** 
-
-_The bot shall be able to provide the recipe for the craft-able item requested by the user_
-
-
-**REQ 140**
-
-_The bot shall allow privileged users add data to the database_
-
-
-**REQ 150**
-
-
-_The bot shall allow privileged users edit data to the database_
-
-
-
-**REQ 160**
-
-_The bot shall allow users to track the monsters they have killed_
-
-
-**REQ 170**
-
-_The bot shall allow users to track the monsters that have killed them_
-
-
-**REQ 180**
-
-_The bot shall be able to display a list of all available commands supported by the bot_
- 
+**REQ: 060**
+- Command: `-vendors (page)`
+    - There is then an optional field that provides a page number if previous results went past current page limit.
+- Return:
+    - If no input is provided then display the first 5 vendors information:
+        - Id
+        - Name
+        - Location
+    - If a page number is specified, it will lists the 5 vendors for that page
+        - If the page number mulitiplied by 5 is greater then the number of vendors, display page error
+   
+**REQ: 070**
+- Command: `-soldby <id>|<name> (page)`
+    - The required field will be either a number (id) or a string (name).
+    - There is then an optional field that provides a page number if previous results went past current page limit.
+- Return:
+    - If no input is provided then display instructions on how to use the command
+    - If none returned then say no products found
+    - If returns one product it will list:
+        - Name
+        - Type
+        - Description
+    - If returns more than one product it will list in a table:
+        - ID
+        - Name
+        - Type
+        - Description
 
 ------------------------------------------------------------------------------------------
 
@@ -204,9 +179,9 @@ example of _item make_ command return value(s):
 ######REQ 140 Design:
 
 
-Command name: _-user_ 
+Command name: _-add_ 
 
-Parameters: _name_, _id_ 
+Parameters: _name_, _id_, 
 
 **Design of _user_ command**:
 
@@ -215,19 +190,20 @@ on a server that the user's account is a member of. Therefore, if the role is of
 "privileged" then the bot will allow that user account to adjust data or edit it in the 
 database of Monster Hunter World video game. 
 
-The user command needs the name of the user or the user id associated with that user. once 
+The _add_ command needs the name of the user or the user id associated with that user. once 
 entered the Bot will prompt a message stating what type of data the user would like to add. 
 Such as item, weapon, location, Armor, ect. The Bot will then prompt sequentially, all 
 fields of that item type to the user. The user will input the data desired for that field. 
 Once all fields have been satisfied the bot will write it to the database. Of course if 
 the user inputs a wrong type for an item, (i.e. something other than a weapon, location,
 item, armor) than the bot present an error message to that effect. The bot will only prompt 
-an error message about inputing wrong or misguided data up to three times. After this 
+an error message about inputting wrong or misguided data up to three times. After this 
 condition the command will exit, and all data typed prior will be lost. IF the user inputs
 no parameters or more than name, or id, then the command does nothing, other than print 
 a message stating the context of the syntax issue that is occurring. 
 
-The design for the _user_ command is much bigger in terms of overall scope. Both in Design 
+
+The design for the _add_ command is much bigger in terms of overall scope. Both in Design 
 and implementation. Thus this feature will be held off until the second phase of development. 
 If the backend is change. Thus currently speaking this is a requirement to design hiccup that
 comes as an inevitable consequence form the waterfall process.  
@@ -235,7 +211,7 @@ comes as an inevitable consequence form the waterfall process.
 
 examples of _user_ command usage:
 
-`-user Josh`  -- example with _name_ parameter 
+`-add Josh`  -- example with _name_ parameter 
 
 `-user 2`     -- example with _id_ parameter 
 
@@ -247,9 +223,9 @@ examples of _user_ command usage:
 ######REQ 150 Design:
 
 
-Command name: _-user_ 
+Command name: _-edit_ 
 
-Parameters: _name_, _id_ 
+Parameters: _name_, _id_,
 
 **Design of _user_ command**:
 
@@ -258,20 +234,21 @@ This command is very similar to **REQ 140** command. Same command name and param
 Moreover, very similar functionality. The only distinction is that this command does not 
 add new weapons, items, locations, armor or other aspects to the Monster Hunter World 
 database. It simply allows a privileged use to edit currently existing information about
-an item, weapon, location, armour, or other. The program will prompt the user for to enter
+an item, weapon, location, armour, or other. The program will prompt the user  to enter
 the type of data they wish to edit. If the user inputs an invalid type; other than items,
 weapons, locations or other, that is not apart of the game. The bot will print an 
 appropriate message, and prompt for editing input again. However, if the user again, 
-provides misguided input then the _user_ command exits. However, if the user inputs valid
+provides misguided input then the _edit_ command exits. However, if the user inputs valid
 input that references a specific type of item in the game. Then the Bot will find that
 item and provide a list of all fields available to edit. This way it creates no ambiguity
 on the users perspective, for what can and cannot be edited in the Monster Hunter 
 World game via the Discord bot.
 
+
 A privilege user is define by roles in Discord. Each Discord user account has a role 
-on a server that the user's account is a member of. Therefore, if the role is of type 
-"privileged" then the bot will allow that user account to adjust data or edit it in the 
-database of Monster Hunter World video game. 
+on a server that the user's account is a member of. This is given by the Admin of the server.
+Therefore, if the role is of type "privileged" then the bot will allow that user account 
+to adjust data or edit it in the database of Monster Hunter World video game. 
 
 
 As with **REQ 140**, **REQ 150** is considered more of a bonus feature and therefore is 
@@ -280,13 +257,11 @@ speaking this is a requirement to design hiccup that comes as an inevitable cons
 form the waterfall process.  
 
 
-
 examples of _user_ command usage:
 
 `-user Josh`  -- example with _name_ parameter 
 
 `-user 2`     -- example with _id_ parameter 
-
 
 
 
@@ -309,18 +284,17 @@ Monster Hunter World game. Then the Bot prints out an appropriate message to the
 the command is entered without any name, or parameter. Then command does nothing and prints
 out nothing to the user via Discord. 
 
-When this command is entered, it will first prompt the user for the user's account name. This 
-way each user has its own saved list of monsters killed. If the user does not have a valid 
-account name or id then the monster is not saved in any list, and an appropriate message is 
-displayed to the user via discord. The user will have to authenticate themselves via their 
-password as well. This will be the same password as in the Discord server. This way random 
-people belonging to the server this Monster Hunter World bot is associated with. Cannot 
-edit the list of monsters they have killed without the knowledge of the users pass code.
+To ensure that each user of the Monster Hunter World Bot has its own list of monsters killed. 
+This command creates and installs victimized monsters under the user's discord name. 
+So that each user can track their killed monsters.
 
 There are 48 total monsters in the Monster Hunter World video game. Thus the maximum size 
-of any monster list will be 48. The smallest size of course would be if there were no 
-monsters killed, thus size = 0. Being how the upper bound of a monster list is 48. 
-printing out to discord should not cause any significant undefined bandwidth issues. 
+of any monster list will be 48. _Currently, as of 4/20/21, this number of monsters is correct. 
+However, due to updates, or Monster Hunter World game designers wanting to add or remove 
+monster content. This total number of monsters is subject to change_.The smallest size of
+course would be if there were no monsters killed, thus size = 0. Being how the upper
+bound of a monster list is 48. printing out to discord should not cause any significant
+undefined bandwidth issues. 
 
 Potentially I could have returned a dictionary here instead of a list, however,
 you would have to utilize a value, or key field per cell in a dictionary in the python 
@@ -334,11 +308,6 @@ examples of _my victims_ command usage:
 `-my victims Kulu-Ya-Ku`  -- example with _name_ parameter 
 
 
-example of the _user entry_ aspect of the _my victims_ command:
-
-`Enter user account name: Josh`
-
-`Enter the password for Josh: ********`
 
 ------------------------------------------------------------------------------------------
 
@@ -353,22 +322,14 @@ Parameters: _name_
 **Design of _user_ command**:
 
 
-This command is the exact same design as the **REQ 160**. In every way the only difference
+This command is the exact same design as the **REQ 160**. In every way; the only difference
 is the command name is different. The design and implementation will be identical.
 Therefore, refer to **REQ 160** to find out the details. 
-
 
 
 examples of _gone to soon_ command usage:
 
 `-gone to soon Kulu-Ya-Ku`  -- example with _name_ parameter 
-
-
-example of the _user entry_ aspect of the _gone to soon_ command:
-
-`Enter user account name: Josh`
-
-`Enter the password for Josh: ********`
 
 
 
@@ -400,6 +361,38 @@ only one structure is needed.
 examples of _help_ command usage:
 
 `-help`
+
+
+
+#Backend
+
+**REQ: 240**
+
+- Option 1: https://github.com/MattJarman/mhw-api
+    - Pro: Database in sqlite, so entire database is in repo
+    - Con: API only provides 3 endpoints with very limited information
+    - Summary: After installing Docker and getting this running, the limits in the REST API 
+      make using this backend difficult. It doesn't support all the end points the other API 
+      supports, and appears to have fewer categories of data. I would not recommend for this project.
+- Option 2: https://github.com/LartTyler/MHWDB-API
+    - Pro: Many endpoints with good documentation [here](https://docs.mhw-db.com/)
+    - Con: MySql database which doesn't appear to be provided
+    - Summary: After installing Vagrant and getting this API up, I found the README instructions impossible to complete. 
+      The instructions said to run "./db-reset.sh latest", but this 'db-reset.sh' file doesn't exist in the repo. 
+      So, when making calls to the API running locally, it fails with a database error as the database isn't 
+      configured correctly. This could be an alternative solution, if the database was populated.
+- Option 3: Use https://mhw-db.com directly
+    - Pro: We don't need to run and host our own REST API
+    - Pro: All the endpoints documented [here](https://docs.mhw-db.com/) are available. 
+    - Con: We are unable to change the backend if needed. 
+    - Summary: The documentation shows this REST API should provide all the features we require 
+      and is publicly accessible. Using the already provided API and hosting, this option would require less resources 
+      than if we were to run our own REST API backend. At this time, this is the suggested backend.
+
+
+
+
+
 
 
 
