@@ -181,7 +181,7 @@ example of _item make_ command return value(s):
 
 Command name: _-add_ 
 
-Parameters: _name_, _id_, 
+Parameters: _name_, _id_ 
 
 **Design of _user_ command**:
 
@@ -202,8 +202,7 @@ condition the command will exit, and all data typed prior will be lost. IF the u
 no parameters or more than name, or id, then the command does nothing, other than print 
 a message stating the context of the syntax issue that is occurring. 
 
-
-The design for the _add_ command is much bigger in terms of overall scope. Both in Design 
+The design for the _user_ command is much bigger in terms of overall scope. Both in Design 
 and implementation. Thus this feature will be held off until the second phase of development. 
 If the backend is change. Thus currently speaking this is a requirement to design hiccup that
 comes as an inevitable consequence form the waterfall process.  
@@ -225,7 +224,7 @@ examples of _user_ command usage:
 
 Command name: _-edit_ 
 
-Parameters: _name_, _id_,
+Parameters: _name_, _id_ 
 
 **Design of _user_ command**:
 
@@ -244,7 +243,6 @@ item and provide a list of all fields available to edit. This way it creates no 
 on the users perspective, for what can and cannot be edited in the Monster Hunter 
 World game via the Discord bot.
 
-
 A privilege user is define by roles in Discord. Each Discord user account has a role 
 on a server that the user's account is a member of. This is given by the Admin of the server.
 Therefore, if the role is of type "privileged" then the bot will allow that user account 
@@ -257,11 +255,13 @@ speaking this is a requirement to design hiccup that comes as an inevitable cons
 form the waterfall process.  
 
 
+
 examples of _user_ command usage:
 
 `-user Josh`  -- example with _name_ parameter 
 
 `-user 2`     -- example with _id_ parameter 
+
 
 
 
