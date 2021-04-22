@@ -21,4 +21,3 @@ Action 20: “Implement REST Query to API and return results to bot”
 Action 21: “Make bot stay alive”  
 Action 22: “Create basic framework for each command”  
 Action 23: “Figure out how to print table in discord”  
-
