@@ -1,4 +1,10 @@
 
+######CEG 4110 Spring 2021 
+
+
+######Joshua Rupp, Kyle Sturdevant, Trenton Brown --> Group 12
+
+
 #Frontend
 
 **010 The bot shall be able to provide an informational overview of the game**
@@ -62,84 +68,6 @@
 
 **070 The bot shall be able to provide a list of products the vendor sells**
 
-
-
-
-#Backend
-
-**240 The Backend shall be a REST API providing information related to the Monster Hunter World game.**
-
-- Option 1: https://github.com/MattJarman/mhw-api
-    - Pro: Database in sqlite, so entire database is in repo
-    - Con: API only provides 3 endpoints with very limited information
-    - Summary: After installing Docker and getting this running, the limits in the REST API 
-      make using this backend difficult. It doesn't support all the end points the other API 
-      supports, and appears to have fewer categories of data. I would not recommend for this project.
-- Option 2: https://github.com/LartTyler/MHWDB-API
-    - Pro: Many endpoints with good documentation [here](https://docs.mhw-db.com/)
-    - Con: MySql database which doesn't appear to be provided
-    - Summary: After installing Vagrant and getting this API up, I found the README instructions impossible to complete. 
-      The instructions said to run "./db-reset.sh latest", but this 'db-reset.sh' file doesn't exist in the repo. 
-      So, when making calls to the API running locally, it fails with a database error as the database isn't 
-      configured correctly. This could be an alternative solution, if the database was populated.
-- Option 3: Use https://mhw-db.com directly
-    - Pro: We don't need to run and host our own REST API
-    - Pro: All the endpoints documented [here](https://docs.mhw-db.com/) are available. 
-    - Con: We are unable to change the backend if needed. 
-    - Summary: The documentation shows this REST API should provide all the features we require 
-      and is publicly accessible. Using the already provided API and hosting, this option would require less resources 
-      than if we were to run our own REST API backend. At this time, this is the suggested backend.
-
-
-
-
-#Design.md by Joshua Rupp
-
-######CEG 4110 Spring 2021 
-
-######Joshua Rupp, Kyle Sturdevant, Trenton Brown --> Group 12
-
-######Overview of what you will find in this document:
-
-[Five requirements of Group 12's Google Doc which can be found at:]
- 
-(https://docs.google.com/document/d/1LdCnvcZ_LXHHckbBnyPZtQZOH8F8qjPd47igwdDOoVs/edit)
-
-There are 18 total requirements for this project for building and implementing a _Discord
-bot_ for the _Monster Hunter World_ Video Game. This document specifically focuses on the 
-description, of the design process, for the following requirements. 
-
-**REQ 130** 
-
-_The bot shall be able to provide the recipe for the craft-able item requested by the user_
-
-
-**REQ 140**
-
-_The bot shall allow privileged users add data to the database_
-
-
-**REQ 150**
-
-
-_The bot shall allow privileged users edit data to the database_
-
-
-
-**REQ 160**
-
-_The bot shall allow users to track the monsters they have killed_
-
-
-**REQ 170**
-
-_The bot shall allow users to track the monsters that have killed them_
-
-
-**REQ 180**
-
-_The bot shall be able to display a list of all available commands supported by the bot_
- 
 
 ------------------------------------------------------------------------------------------
 
@@ -206,7 +134,7 @@ example of _item make_ command return value(s):
 
 Command name: _-user_ 
 
-Parameters: _name_, _id_ 
+Parameters: _name_, _id_, _-add_
 
 **Design of _user_ command**:
 
@@ -226,6 +154,12 @@ an error message about inputing wrong or misguided data up to three times. After
 condition the command will exit, and all data typed prior will be lost. IF the user inputs
 no parameters or more than name, or id, then the command does nothing, other than print 
 a message stating the context of the syntax issue that is occurring. 
+
+The _-add_ paramter is not optional. It is requred for this command to be able to 
+distinguish between the _user_ command that adds and changes Monster Hunter World database. 
+From the same _user_ command that only edits Monster Hunter World data. Therefore, if the 
+_-edit_ is not present then the command will not add anything. Moreover, prints an 
+appropriate message to discrod, educated the user to the negligence of the commands input.
 
 The design for the _user_ command is much bigger in terms of overall scope. Both in Design 
 and implementation. Thus this feature will be held off until the second phase of development. 
@@ -249,7 +183,7 @@ examples of _user_ command usage:
 
 Command name: _-user_ 
 
-Parameters: _name_, _id_ 
+Parameters: _name_, _id_, _-edit_
 
 **Design of _user_ command**:
 
@@ -268,10 +202,16 @@ item and provide a list of all fields available to edit. This way it creates no 
 on the users perspective, for what can and cannot be edited in the Monster Hunter 
 World game via the Discord bot.
 
+The _-edit_ paramter is not optional. It is requred for this command to be able to 
+distinguish between the _user_ command that adds and changes Monster Hunter World database. 
+From the same _user_ command that only edits Monster Hunter World data. Therefore, if the 
+_-edit_ is not present then the command will not edit anything. Moreover, prints an 
+appropriate message to discrod, educated the user to the negligence of the commands input. 
+
 A privilege user is define by roles in Discord. Each Discord user account has a role 
-on a server that the user's account is a member of. Therefore, if the role is of type 
-"privileged" then the bot will allow that user account to adjust data or edit it in the 
-database of Monster Hunter World video game. 
+on a server that the user's account is a member of. This is given by the Admin of the server.
+Therefore, if the role is of type "privileged" then the bot will allow that user account 
+to adjust data or edit it in the database of Monster Hunter World video game. 
 
 
 As with **REQ 140**, **REQ 150** is considered more of a bonus feature and therefore is 
@@ -309,18 +249,17 @@ Monster Hunter World game. Then the Bot prints out an appropriate message to the
 the command is entered without any name, or parameter. Then command does nothing and prints
 out nothing to the user via Discord. 
 
-When this command is entered, it will first prompt the user for the user's account name. This 
-way each user has its own saved list of monsters killed. If the user does not have a valid 
-account name or id then the monster is not saved in any list, and an appropriate message is 
-displayed to the user via discord. The user will have to authenticate themselves via their 
-password as well. This will be the same password as in the Discord server. This way random 
-people belonging to the server this Monster Hunter World bot is associated with. Cannot 
-edit the list of monsters they have killed without the knowledge of the users pass code.
+To ensure that each user of the Monster Hunter World Bot has its own list of monsters killed. 
+This command creates and installs victimized monsters under the user's discord name. 
+So that each user can track their killed monsters.
 
 There are 48 total monsters in the Monster Hunter World video game. Thus the maximum size 
-of any monster list will be 48. The smallest size of course would be if there were no 
-monsters killed, thus size = 0. Being how the upper bound of a monster list is 48. 
-printing out to discord should not cause any significant undefined bandwidth issues. 
+of any monster list will be 48. _Currently, as of 4/20/21, this number of monsters is correct. 
+However, due to updates, or Monster Hunter World game designers wanting to add or remove 
+monster content. This total number of monsters is subject to change_.The smallest size of
+course would be if there were no monsters killed, thus size = 0. Being how the upper
+bound of a monster list is 48. printing out to discord should not cause any significant
+undefined bandwidth issues. 
 
 Potentially I could have returned a dictionary here instead of a list, however,
 you would have to utilize a value, or key field per cell in a dictionary in the python 
@@ -334,11 +273,6 @@ examples of _my victims_ command usage:
 `-my victims Kulu-Ya-Ku`  -- example with _name_ parameter 
 
 
-example of the _user entry_ aspect of the _my victims_ command:
-
-`Enter user account name: Josh`
-
-`Enter the password for Josh: ********`
 
 ------------------------------------------------------------------------------------------
 
@@ -353,22 +287,14 @@ Parameters: _name_
 **Design of _user_ command**:
 
 
-This command is the exact same design as the **REQ 160**. In every way the only difference
+This command is the exact same design as the **REQ 160**. In every way; the only difference
 is the command name is different. The design and implementation will be identical.
 Therefore, refer to **REQ 160** to find out the details. 
-
 
 
 examples of _gone to soon_ command usage:
 
 `-gone to soon Kulu-Ya-Ku`  -- example with _name_ parameter 
-
-
-example of the _user entry_ aspect of the _gone to soon_ command:
-
-`Enter user account name: Josh`
-
-`Enter the password for Josh: ********`
 
 
 
@@ -400,6 +326,38 @@ only one structure is needed.
 examples of _help_ command usage:
 
 `-help`
+
+
+
+#Backend
+
+**240 The Backend shall be a REST API providing information related to the Monster Hunter World game.**
+
+- Option 1: https://github.com/MattJarman/mhw-api
+    - Pro: Database in sqlite, so entire database is in repo
+    - Con: API only provides 3 endpoints with very limited information
+    - Summary: After installing Docker and getting this running, the limits in the REST API 
+      make using this backend difficult. It doesn't support all the end points the other API 
+      supports, and appears to have fewer categories of data. I would not recommend for this project.
+- Option 2: https://github.com/LartTyler/MHWDB-API
+    - Pro: Many endpoints with good documentation [here](https://docs.mhw-db.com/)
+    - Con: MySql database which doesn't appear to be provided
+    - Summary: After installing Vagrant and getting this API up, I found the README instructions impossible to complete. 
+      The instructions said to run "./db-reset.sh latest", but this 'db-reset.sh' file doesn't exist in the repo. 
+      So, when making calls to the API running locally, it fails with a database error as the database isn't 
+      configured correctly. This could be an alternative solution, if the database was populated.
+- Option 3: Use https://mhw-db.com directly
+    - Pro: We don't need to run and host our own REST API
+    - Pro: All the endpoints documented [here](https://docs.mhw-db.com/) are available. 
+    - Con: We are unable to change the backend if needed. 
+    - Summary: The documentation shows this REST API should provide all the features we require 
+      and is publicly accessible. Using the already provided API and hosting, this option would require less resources 
+      than if we were to run our own REST API backend. At this time, this is the suggested backend.
+
+
+
+
+
 
 
 
