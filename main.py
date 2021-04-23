@@ -1,6 +1,6 @@
 # Reference: https://realpython.com/how-to-make-a-discord-bot-python/
 import discord
-from discord.ext import commands, tasks
+import running
 from replit import db
 
 TOKEN = db["BOT_KEY"]
@@ -18,4 +18,5 @@ async def on_message(message):
     response = 'Hello World'
     await message.channel.send(response)
 
+running.keep_bot_alive()
 client.run(TOKEN)
