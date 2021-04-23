@@ -217,5 +217,47 @@ _N/A_
 
 -----------------------------------------------------------------------------------------------------------
 
+_**Minutes for week 16  of CEG 4110 Spring 2021.**_
 
 
+**What actions have we meaningfully worked on this week??**
+
+_Action 23: “Figure out how to print table in discord” Assigned Josh on 4/9 due 4/20_
+
+
+**New Actions assigned to you:**
+
+_Action 24: Close all currently open pull requests from the week of April 19, 2021.  Assigned: to all group 12 members,
+ Due: 04/25/21_
+
+_Action 25: Finish implementations and push to Github. Create pull requests for those implementations, and get them 
+closed. Assigned: to all group 12 members, Due: 04/29/21_
+
+_Action 26: Complete and close all  remaining pull requests for CEG 4110 Spring 2021.  Assigned: to all group 12 
+members, Due: 04/29/21_
+
+
+**Completed actions:**
+
+_Action 23: “Figure out how to print table in discord” Assigned Josh on 4/9 due 4/20_
+
+
+
+**Planned Work:** 
+
+_Action 24: Close all currently open pull requests from the week of April 19, 2021.  Assigned: to all group 12 members,
+ Due: 04/25/21_
+
+_Action 25: Finish implementations and push to Github. Create pull requests for those implementations, and get 
+them closed. Assigned: to all group 12 members, Due: 04/29/21_
+
+_Action 26: Complete and close all  remaining pull requests for CEG 4110 Spring 2021.  Assigned: to all group 12
+ members, Due: 04/29/21_
+
+
+**Decisions and Other Contributions in Past Week:**
+
+_Created a .md formatted file of our Minutes log file on our group 12 google doc. Then pushed it to our group 
+repository on www.github.com_
+
+-----------------------------------------------------------------------------------------------------------
