@@ -122,48 +122,47 @@
 ######REQ 130 Design: 
 
 
-Command name: _-item make_
+Command name: _-item_recipe_
 
 Parameters: _name_, _type_, _rarity_ 
 
-**Design of _item make_ command**:
+**Design of _-item_recipe_command**:
 
-The name for the command, _item_ ,was a straight forward process. I needed a name that would 
-non ambiguous.  In contrast, if the command name was _-i_ or _-itm_. There leaves a level of 
+The name for the command, _-item_recipe_ ,was a straight forward process. I needed a name that would 
+be non ambiguous.  In contrast, if the command name was _-i_ or _-itm_. There leaves a level of 
 decoding from the users perspective, on trying to figure out the function of the command. 
-Where as _-item make_ does not require a significant amount more typing. Yet leaves no ambiguity
-as to the function of the command. Moreover, the second word in the command, _make_, 
-is easier to spell for people than say _craft_ or _recipe_. 
+Where as _-item_recipe_ does not require a significant amount more typing. Yet leaves no ambiguity
+as to the function of the command.
 
-The parameters of the _item make_ command are a way to provide a convenient way to search for a 
+The parameters of the _-item_recipe_ command are a way to provide a convenient way to search for a 
 item recipe. The user need not know exactly what he/she wishes to search for. However,
 this command does require that the user needs to know exactly one of the three ways of 
 quantifying an item in the Monster Hunter World game. Providing no parameters, returns 
 nothing, except a message telling the user to input a name, type, or rarity if they wish
-to see a craft-able recipe for that item, if applicable. Not all items in the Monster 
-Hunter World game are craft-able. Thus if the item searched for is non-craft-able then the
+to see a craftable recipe for that item, if applicable. Not all items in the Monster 
+Hunter World game are craftable. Thus if the item searched for is non-craftable then the
 bot will return a message to that affect. If the user inputs two or all three parameters 
-the _item make command_ shall use the first parameter given. This design provides 
+the _item_recipe command_ shall use the first parameter given. This design provides 
 flexibility and robustness from an functionality standpoint. Moreover, makes it a convenient
 user friendly design so that the user does not need to be an expert in all things related
 to craft-able items in Monster Hunter World. In order to find out useful information about 
-items and craft-ability.  
+items and craftabililty.  
 
 The flexibility of the parameters was the most intellectually intensive part of this command's
 design. From the users perspective, if they don't know anything about the game or very little
 I wanted to be able to still have this Bot provide useful information. Thus entering one, two
 or all three parameters will not only cause no functionality undefined errors. Moreover, 
 will provide a flex-able input interface for the user. Thus need know only one of the three
-ways to represent an item that is craft-able. 
+ways to represent an item that is craftable. 
 
 
 examples of _item make_ command usage: 
 
-`-item make Mega Potion`  -- example with _name_ parameter 
+`-item_recipe Mega Potion`  -- example with _name_ parameter 
 
-`-item make medicine`     -- example with _type_ parameter
+`-item_recipe medicine`     -- example with _type_ parameter
 
-`-item make 2`            -- example with _rarity_  parameter
+`-item_recipe 2`            -- example with _rarity_  parameter
 
 
 example of _item make_ command return value(s):
@@ -179,9 +178,9 @@ example of _item make_ command return value(s):
 ######REQ 140 Design:
 
 
-Command name: _-user_ 
+Command name: _-add_ 
 
-Parameters: _name_, _id_, _-add_
+Parameters: None
 
 **Design of _user_ command**:
 
@@ -190,25 +189,24 @@ on a server that the user's account is a member of. Therefore, if the role is of
 "privileged" then the bot will allow that user account to adjust data or edit it in the 
 database of Monster Hunter World video game. 
 
-The user command needs the name of the user or the user id associated with that user. once 
-entered the Bot will prompt a message stating what type of data the user would like to add. 
-Such as item, weapon, location, Armor, ect. The Bot will then prompt sequentially, all 
-fields of that item type to the user. The user will input the data desired for that field. 
-Once all fields have been satisfied the bot will write it to the database. Of course if 
-the user inputs a wrong type for an item, (i.e. something other than a weapon, location,
-item, armor) than the bot present an error message to that effect. The bot will only prompt 
-an error message about inputing wrong or misguided data up to three times. After this 
-condition the command will exit, and all data typed prior will be lost. IF the user inputs
-no parameters or more than name, or id, then the command does nothing, other than print 
-a message stating the context of the syntax issue that is occurring. 
+This command _-add_ needs no parameters to function properly. The discord bot will only 
+allow this command to work IF.F the user account on discord has the appropriate role or 
+privileges to execute such as command. If a user count on discord does not have the role 
+of a privileged user and attempts to execute this command. A message will be printed out 
+accordingly. 
 
-The _-add_ paramter is not optional. It is requred for this command to be able to 
-distinguish between the _user_ command that adds and changes Monster Hunter World database. 
-From the same _user_ command that only edits Monster Hunter World data. Therefore, if the 
-_-edit_ is not present then the command will not add anything. Moreover, prints an 
-appropriate message to discrod, educated the user to the negligence of the commands input.
+If however, the bot allows the command to execute. Then the bot shall ask for what type 
+of action the user wishes to add to the Monster Hunter World database. Such as item, weapon, 
+location, Armor, ect. The Bot will then prompt sequentially, all fields of that item type to 
+the user. The user will input the data desired for that field. Once all fields have been
+satisfied the bot will write it to the database. Of course if the user inputs a wrong type 
+for an item, (i.e. something other than a weapon, location,item, armor) than the bot present 
+an error message to that effect. The bot will only prompt an error message about inputting wrong
+or misguided data up to three times. After this condition the command will exit, and all data 
+typed prior will be lost. 
 
-The design for the _user_ command is much bigger in terms of overall scope. Both in Design 
+
+The design for the _add_ command is much bigger in terms of overall scope. Both in Design 
 and implementation. Thus this feature will be held off until the second phase of development. 
 If the backend is change. Thus currently speaking this is a requirement to design hiccup that
 comes as an inevitable consequence form the waterfall process.  
@@ -216,9 +214,7 @@ comes as an inevitable consequence form the waterfall process.
 
 examples of _user_ command usage:
 
-`-user Josh`  -- example with _name_ parameter 
-
-`-user 2`     -- example with _id_ parameter 
+`-add`
 
 
 
@@ -228,32 +224,26 @@ examples of _user_ command usage:
 ######REQ 150 Design:
 
 
-Command name: _-user_ 
+Command name: _-edit_ 
 
-Parameters: _name_, _id_, _-edit_
+Parameters: None
 
-**Design of _user_ command**:
+**Design of _edit_ command**:
 
 
-This command is very similar to **REQ 140** command. Same command name and parameters. 
-Moreover, very similar functionality. The only distinction is that this command does not 
-add new weapons, items, locations, armor or other aspects to the Monster Hunter World 
-database. It simply allows a privileged use to edit currently existing information about
-an item, weapon, location, armour, or other. The program will prompt the user for to enter
-the type of data they wish to edit. If the user inputs an invalid type; other than items,
-weapons, locations or other, that is not apart of the game. The bot will print an 
-appropriate message, and prompt for editing input again. However, if the user again, 
-provides misguided input then the _user_ command exits. However, if the user inputs valid
-input that references a specific type of item in the game. Then the Bot will find that
-item and provide a list of all fields available to edit. This way it creates no ambiguity
-on the users perspective, for what can and cannot be edited in the Monster Hunter 
+This command is very similar to **REQ 140** command.very similar functionality. The only
+distinction is that this command does not add new weapons, items, locations, armor or other
+aspects to the Monster Hunter World database. It simply allows a privileged use to edit 
+currently existing information about an item, weapon, location, armour, or other. The program 
+will prompt the user for to enter the type of data they wish to edit. If the user inputs an 
+invalid type; other than items, weapons, locations or other, that is not apart of the game. 
+The bot will print an appropriate message, and prompt for editing input again. However,
+if the user again, provides misguided input then the _edit_ command exits. However, if the 
+user inputs valid input that references a specific type of item in the game. Then the Bot 
+will find that item and provide a list of all fields available to edit. This way it creates
+no ambiguity on the users perspective, for what can and cannot be edited in the Monster Hunter 
 World game via the Discord bot.
 
-The _-edit_ paramter is not optional. It is requred for this command to be able to 
-distinguish between the _user_ command that adds and changes Monster Hunter World database. 
-From the same _user_ command that only edits Monster Hunter World data. Therefore, if the 
-_-edit_ is not present then the command will not edit anything. Moreover, prints an 
-appropriate message to discrod, educated the user to the negligence of the commands input. 
 
 A privilege user is define by roles in Discord. Each Discord user account has a role 
 on a server that the user's account is a member of. This is given by the Admin of the server.
@@ -261,7 +251,7 @@ Therefore, if the role is of type "privileged" then the bot will allow that user
 to adjust data or edit it in the database of Monster Hunter World video game. 
 
 
-As with **REQ 140**, **REQ 150** is considered more of a bonus feature and therefore is 
+As with **REQ 140**; **REQ 150** is considered more of a bonus feature and therefore is 
 held off until the second phase of development. If the backend is change. Thus, currently 
 speaking this is a requirement to design hiccup that comes as an inevitable consequence 
 form the waterfall process.  
@@ -270,9 +260,9 @@ form the waterfall process.
 
 examples of _user_ command usage:
 
-`-user Josh`  -- example with _name_ parameter 
+`-edit`  
 
-`-user 2`     -- example with _id_ parameter 
+
 
 
 
@@ -283,13 +273,13 @@ examples of _user_ command usage:
 ######REQ 160 Design:
 
 
-Command name: _-my victims_ 
+Command name: _-my_victims_ 
 
 Parameters: _name_ 
 
 **Design of _user_ command**:
 
-The command _my victims_ takes in the name of a monster in the monster hunter world video
+The command _my_victims_ takes in the name of a monster in the monster hunter world video
 game, as its only parameter. It installs it into a list of monsters, and then displays 
 the list to the user via discord. If the name of the monster is not a monster in the 
 Monster Hunter World game. Then the Bot prints out an appropriate message to the user. IF
@@ -315,7 +305,7 @@ to the user, and in code. It simply is complexity that is not needed. Thus a lis
 in the python language is best for this design.  
 
 
-examples of _my victims_ command usage:
+examples of _my_victims_ command usage:
 
 `-my victims Kulu-Ya-Ku`  -- example with _name_ parameter 
 
@@ -327,11 +317,11 @@ examples of _my victims_ command usage:
 ######REQ 170 Design:
 
 
-Command name: _-gone to soon_ 
+Command name: _-victimized_ 
 
 Parameters: _name_ 
 
-**Design of _user_ command**:
+**Design of _victimized_ command**:
 
 
 This command is the exact same design as the **REQ 160**. In every way; the only difference
