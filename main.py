@@ -52,7 +52,10 @@ async def on_message(message):
                 response = initialCmd[cmd][1](param)
 
     if response is not None:
-        await message.channel.send(response)
+        if isinstance(response, discord.Embed):
+            await message.channel.send(embed=response)
+        else:
+            await message.channel.send(response)
 
 
 running.keep_bot_alive()

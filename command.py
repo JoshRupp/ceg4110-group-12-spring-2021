@@ -5,7 +5,10 @@ from discord import Embed
 def add_fields_to_embed(results_dict):
     embedded = Embed()
     for key in results_dict.keys():
-        embedded.add_field(name=key, value=results_dict[key])
+        if key == "Description":
+            embedded.add_field(name=key, value=results_dict[key], inline=False)
+        else:
+            embedded.add_field(name=key, value=results_dict[key], inline=True)
     return embedded
 
 
@@ -14,10 +17,10 @@ def overview():
 
 
 def monster(args):
-    single_keys = ["name", "type", "species", "description"]
+
     search_term = str(args)
     if search_term.isnumeric():
-        results = mhwRequest.get_id("monsters", search_term)
+        results = [mhwRequest.get_id("monsters", search_term)]
     else:
         results = mhwRequest.get_name("monsters", search_term)
 
@@ -28,34 +31,35 @@ def monster(args):
         results_dict = dict()
         single_result = results[0]
 
+        single_keys = ["name", "type", "species", "description"]
         for each_key in single_keys:
-            results_dict.update({each_key: single_result[each_key]})
+            results_dict.update({each_key.capitalize(): single_result[each_key]})
 
         if len(single_result["locations"]) > 0:
             locations_names = []
             for locations in single_result["locations"]:
                 locations_names.append(locations["name"])
-            results_dict["locations"] = ", ".join(locations_names)
+            results_dict["Locations"] = ", ".join(locations_names)
 
         if len(single_result["ailments"]) > 0:
             ailment_names = []
             for ailment in single_result["ailments"]:
-                ailment_names.append(ailment["name"])
-            results_dict["ailments"] = ", ".join(ailment_names)
+                ailment_names.append(ailment["name"].capitalize())
+            results_dict["Ailments"] = ", ".join(ailment_names)
 
         if len(single_result["resistances"]) > 0:
             resistances_names = []
             for resistances in single_result["resistances"]:
-                resistances_names.append(resistances["element"])
-            results_dict["resistances"] = ", ".join(resistances_names)
+                resistances_names.append(resistances["element"].capitalize())
+            results_dict["Resistances"] = ", ".join(resistances_names)
 
         if len(single_result["weaknesses"]) > 0:
             weaknesses_names = []
             for weaknesses in single_result["weaknesses"]:
-                weaknesses_names.append(weaknesses["element"])
-            results_dict["resistances"] = ", ".join(weaknesses_names)
+                weaknesses_names.append(weaknesses["element"].capitalize())
+            results_dict["Weaknesses"] = ", ".join(weaknesses_names)
 
-    return add_fields_to_embed(results_dict)
+        return add_fields_to_embed(results_dict)
 
 
 def help_monster():
