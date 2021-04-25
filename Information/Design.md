@@ -111,6 +111,8 @@
         - Description
 
 **Requirement 080**  
+This design was chosen because it will get the user the list of events, and they would
+then be able to look up the individual event so that they could learn what the event entails.
 - Command: `-events [id]` 
     - Parameter is optional 
 - Return:
@@ -124,6 +126,8 @@
         - endTimeStamp
   
 **Requirement 090**  
+This design choice was made because if the user failed to define either or the parameters,
+"ecosystem" or "rank", there would be too much information to display.
 - Command: `-location [ecosystem] [rank]`  
     - parameters are required 
 - Return: 
@@ -134,16 +138,23 @@
         - Name
 
 **Requirement 100**  
+This design choice was made because there are only a few tools with small descriptions. So a list
+of the tools being output should pose no problem and should reduce the number of chances a user
+has to try and use the command and not get the desired results.
 - Command: `-hunter tools`
 - Return:  
     - Name
     - Description
 
-**Requirement 110**  
+**Requirement 110**
+Not every aspect of the game will have a tip to go with it. So the choice was made to provide
+a random tip rather than have the user guess at which aspect has a tip by passing a parameter.
 - Command: `-tip`  
 - Return: A random tip about gameplay  
 
 **Requirement 120**  
+The choice made for this requirement is for the same reason as requirement 90, if either
+one of the parameters there would be too much information to output.
 - Command: `-Guiding [area] [level]`
   - Parameters are required 
 - Return:  
