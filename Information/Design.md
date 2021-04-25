@@ -1,6 +1,5 @@
 
-######CEG 4110 Spring 2021 
-
+######CEG 4110 Spring 2021  Design.md documentation 
 
 ######Joshua Rupp, Kyle Sturdevant, Trenton Brown --> Group 12
 
