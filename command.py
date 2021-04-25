@@ -3,6 +3,11 @@ from discord import Embed
 
 
 def add_fields_to_embed(results_dict):
+    """
+    Create a Discord Embed object and populate it
+    :param results_dict: The dictionary to be added as fields
+    :return: A Discord Embed object with Fields Populated
+    """
     embedded = Embed()
     for key in results_dict.keys():
         if key == "Description":
@@ -17,8 +22,13 @@ def overview():
 
 
 def monster(args):
-
+    """
+    Run monster query and return results.
+    :param args: input from user
+    :return: Either a string or a Discord Embed object
+    """
     search_term = str(args)
+    # Check if searching for ID or name
     if search_term.isnumeric():
         results = [mhwRequest.get_id("monsters", search_term)]
     else:
@@ -27,6 +37,7 @@ def monster(args):
     if len(results) == 0:
         return "No monsters matched your search."
 
+    # One results return Discord Embed object
     if len(results) == 1:
         results_dict = dict()
         single_result = results[0]
@@ -35,6 +46,7 @@ def monster(args):
         for each_key in single_keys:
             results_dict.update({each_key.capitalize(): single_result[each_key]})
 
+        # Make lists into comma separated strings
         if len(single_result["locations"]) > 0:
             locations_names = []
             for locations in single_result["locations"]:
