@@ -323,8 +323,8 @@ The command _my_victims_ takes in the name of a monster in the monster hunter wo
 game, as its only parameter. It installs it into a list of monsters, and then displays 
 the list to the user via discord. If the name of the monster is not a monster in the 
 Monster Hunter World game. Then the Bot prints out an appropriate message to the user. IF
-the command is entered without any name, or parameter. Then command does nothing and prints
-out nothing to the user via Discord. 
+the command is entered without any name, or parameter. Then the command will print out the correct 
+syntax for how the command should operate. 
 
 To ensure that each user of the Monster Hunter World Bot has its own list of monsters killed. 
 This command creates and installs victimized monsters under the user's discord name. 
