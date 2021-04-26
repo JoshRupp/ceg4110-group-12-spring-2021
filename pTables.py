@@ -1,43 +1,35 @@
 
 
-"""
-Might be an issue with this library of prettyTable
-Thus you might have to install the package (PTable) in order to get this reference issue ironed out.
- """
+
 from prettytable import PrettyTable
 
 
+class ASCiiTable:
 
-class MyTable:
-
-    def __init__ (self, matrixTable, maxWidth):
+    def __init__ (self, matrix_table, max_width):
 
         self._t = PrettyTable()
-        self.matrixTable = matrixTable
-        self.maxWidth = maxWidth
-        self.columnWidth = []
+        self.matrix_table = matrix_table
+        self.max_width = max_width
+        self.max_column_width = []
         self.header = []
-        self.TableLength = len(self.matrixTable)
-        self.dataRowLength = 0
+        self.table_length= len(self.matrix_table)
+        self.data_row_length = 0
         self._put_data()
         self._get_data_row_length()
-
-
 
     def is_table_empty(self):
         """
         Function checks whether the table passed to the constructor was empty or not.
         :return: a boolean value
         """
-        return self.TableLength == 0
+        return self.table_length == 0
 
-
-    def clear_My_table(self):
+    def clear_my_table(self):
         """
         Clears the table of all its rows.
         """
         self._t.clear_rows()
-
 
     def delete_a_row(self, row_number):
         """
@@ -51,7 +43,6 @@ class MyTable:
         if row_number >= 1 and row_number <= self.dataRowLength-1 :
             self._t.del_row(row_number)
 
-
     def output_table(self):
         """
         prints the object form of the table
@@ -59,14 +50,12 @@ class MyTable:
         if not self.is_table_empty():
             print(self._t)
 
-
     def get_string_version(self):
         """
         :return: The string variable of the table representation.
         """
         if not self.is_table_empty():
             return self._t.get_string()
-
 
     def sort_table(self, s):
         """
@@ -97,8 +86,7 @@ class MyTable:
         """
 
         if not self.is_table_empty():
-            self.dataRowLength = len(self.matrixTable[1:])
-
+            self.dataRowLength = len(self.matrix_table[1:])
 
     def _put_data(self):
 
@@ -108,8 +96,8 @@ class MyTable:
         :return:
         """
         if not self.is_table_empty():
-            self._t.field_names = self.header = self.matrixTable[0]
-            [self._t.add_row(i) for i in self.matrixTable[1:]]
+            self._t.field_names = self.header = self.matrix_table[0]
+            [self._t.add_row(i) for i in self.matrix_table[1:]]
             self._get_max_column_lengths()
 
     def _get_max_column_lengths(self):
@@ -121,11 +109,10 @@ class MyTable:
         :return:
         """
         if not self.is_table_empty():
-            for i in range(len(self.matrixTable[0])):
-                self.columnWidth.append(max([sub[i] for sub in [[len(word) for word in index] for index in self.matrixTable[:]]]))
+            for i in range(len(self.matrix_table[0])):
+                self.max_column_width.append(max([sub[i] for sub in [[len(word) for word in index] for index in self.matrix_table[:]]]))
 
-
-    def _is_String_to_long(self, s):
+    def _is_string_to_long(self, s):
 
         """
          Private function to class MyTable.
@@ -135,17 +122,30 @@ class MyTable:
         :return: boolean value
         """
         s = str(s)
-        return len(s) >= self.maxWidth
+        return len(s) >= self.max_width
 
-    def _truncate_word_length(self):
+    def _decrement_column_width(self, column_width):
 
-        pass
+        return column_width - 1
+
+    def _resize_column_width(self, column_width):
+
+        i = column_width
+        while self._is_string_to_long(i):
+            i = self. _decrement_column_width(i)
+        return i
 
     def _compute_Table_width(self):
 
-        strLength = sum(self.columnWidth)
-        if self._is_String_to_long(strLength):
-            pass
+        strLength = sum(self.max_column_width)
+
+
+        for max_word_length in self.max_column_width:
+            if self._is_string_to_long(max_word_length):
+                self.max_column_width[self.max_column_width.index(max_word_length)] = self._resize_column_width(max_word_length)
+                pass
+
+
 
 
 
@@ -202,21 +202,6 @@ class MyTable:
 
 
 #my_Table.output_table()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
