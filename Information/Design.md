@@ -176,7 +176,7 @@ one of the parameters there would be too much information to output.
 
 Command name: _-item_recipe_
 
-Parameters: _name_, _type_, _rarity_ 
+Parameters: _name_, _id_
 
 **Design of _-item_recipe_command**:
 
@@ -188,34 +188,22 @@ as to the function of the command.
 
 The parameters of the _-item_recipe_ command are a way to provide a convenient way to search for a 
 item recipe. The user need not know exactly what he/she wishes to search for. However,
-this command does require that the user needs to know exactly one of the three ways of 
-quantifying an item in the Monster Hunter World game. Providing no parameters, returns 
-nothing, except a message telling the user to input a name, type, or rarity if they wish
-to see a craftable recipe for that item, if applicable. Not all items in the Monster 
-Hunter World game are craftable. Thus if the item searched for is non-craftable then the
-bot will return a message to that affect. If the user inputs two or all three parameters 
-the _item_recipe command_ shall use the first parameter given. This design provides 
-flexibility and robustness from an functionality standpoint. Moreover, makes it a convenient
-user friendly design so that the user does not need to be an expert in all things related
-to craft-able items in Monster Hunter World. In order to find out useful information about 
-items and craftabililty.  
+this command does require that the user needs to know some part of the name. 
+Providing no parameters, returns nothing, except a message telling the user to input a name. 
+Not all items in the Monster Hunter World game are craftable. Thus if the item searched for 
+is non-craftable then the bot will return a message to that affect.  This design provides 
+flexibility and robustness from an functionality standpoint. Moreover, makes it a convenient 
+user friendly design so that the user does not need to be an expert in all things related to 
+craft-able items in Monster Hunter World. In order to find out useful information about items 
+and craftabililty.  
 
-The flexibility of the parameters was the most intellectually intensive part of this command's
-design. From the users perspective, if they don't know anything about the game or very little
-I wanted to be able to still have this Bot provide useful information. Thus entering one, two
-or all three parameters will not only cause no functionality undefined errors. Moreover, 
-will provide a flex-able input interface for the user. Thus need know only one of the three
-ways to represent an item that is craftable. 
 
 
 examples of _item make_ command usage: 
 
 `-item_recipe Mega Potion`  -- example with _name_ parameter 
 
-`-item_recipe medicine`     -- example with _type_ parameter
-
-`-item_recipe 2`            -- example with _rarity_  parameter
-
+`-item_recipe 12`           -- example with _id_ parameter 
 
 example of _item make_ command return value(s):
 
@@ -234,7 +222,7 @@ Command name: _-add_
 
 Parameters: None
 
-**Design of _user_ command**:
+**Design of _-add_  command**:
 
 A privilege user is define by roles in Discord. Each Discord user account has a role 
 on a server that the user's account is a member of. Therefore, if the role is of type 
@@ -264,7 +252,7 @@ If the backend is change. Thus currently speaking this is a requirement to desig
 comes as an inevitable consequence form the waterfall process.  
 
 
-examples of _user_ command usage:
+examples of _-add_ command usage:
 
 `-add`
 
@@ -310,7 +298,7 @@ form the waterfall process.
 
 
 
-examples of _user_ command usage:
+examples of _-edit_  command usage:
 
 `-edit`  
 
@@ -329,7 +317,7 @@ Command name: _-my_victims_
 
 Parameters: _name_ 
 
-**Design of _user_ command**:
+**Design of _-my_victims_  command**:
 
 The command _my_victims_ takes in the name of a monster in the monster hunter world video
 game, as its only parameter. It installs it into a list of monsters, and then displays 
@@ -381,13 +369,13 @@ is the command name is different. The design and implementation will be identica
 Therefore, refer to **REQ 160** to find out the details. 
 
 
-examples of _gone to soon_ command usage:
+examples of _-victimized_  command usage:
 
 `-gone to soon Kulu-Ya-Ku`  -- example with _name_ parameter 
 
 
 
-######REQ 180 Design:
+######REQ 250 Design:
 
 
 Command name: _-help_ 
@@ -401,8 +389,6 @@ print a brief description of each command. It will do this by printing a diction
 Discord Server. The key in the dictionary is the command name, the value shall be a brief 
 description or purpose of the command.  
 
-In total, the number of commands are 18 for this discord bot. Thus the size of this data 
-structure is 18 cells in the command dictionary. 
 
 I decided to go with a dictionary for this data structure instead of an array or list for 
 one major reason; complexity. To achieve the same functionality that a dictionary in python
