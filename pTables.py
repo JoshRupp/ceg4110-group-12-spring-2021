@@ -1,6 +1,5 @@
 
 
-
 from prettytable import PrettyTable
 
 
@@ -73,13 +72,14 @@ class ASCiiTable:
 
 ########################################################################################################################
 ########################################################################################################################
-############################# Private functions to class: MyTable    Please No Touch ###################################
+############################# Private functions to class: ASCiiTable   Please No Touch ###################################
 ########################################################################################################################
 ########################################################################################################################
 
     def _get_data_row_length(self):
         """
-        Private function to class MyTable.
+        Private function to class ASCiiTable
+.
 
         Function assigns the member variable self.dataRowLength with the length of all rows in the table
         containing the data. This length excludes the header of the table, self.matrixTable[0]
@@ -91,7 +91,8 @@ class ASCiiTable:
     def _put_data(self):
 
         """
-         Private function to class MyTable.
+         Private function to class ASCiiTable
+.
          Function installs the data in the table passed to this table objects constructor.
         :return:
         """
@@ -102,7 +103,8 @@ class ASCiiTable:
 
     def _get_max_column_lengths(self):
         """
-         Private function to class MyTable.
+         Private function to class ASCiiTable
+.
          Function loops through an calculates the maximum length of each column in the table. It does this by
          finding the longest string present in any column in the table. Then installs this value in the member variable
          self.columnWidth array. Where each number in the array corresponds to that columns max width.
@@ -115,7 +117,7 @@ class ASCiiTable:
     def _is_string_to_long(self, s):
 
         """
-         Private function to class MyTable.
+         Private function to class ASCiiTable.
          Function tests whether the string passed is longer or equal to the member variable self.maxWidth.
 
         :param s: String passed by caller
@@ -123,68 +125,6 @@ class ASCiiTable:
         """
         s = str(s)
         return len(s) >= self.max_width
-
-    def _decrement_column_width(self, column_width):
-
-        return column_width - 1
-
-    def _resize_column_width(self, column_width):
-
-        i = column_width
-        while self._is_string_to_long(i):
-            i = self. _decrement_column_width(i)
-        return i
-
-    def _compute_Table_width(self):
-
-        strLength = sum(self.max_column_width)
-
-
-        for max_word_length in self.max_column_width:
-            if self._is_string_to_long(max_word_length):
-                self.max_column_width[self.max_column_width.index(max_word_length)] = self._resize_column_width(max_word_length)
-                pass
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -198,7 +138,7 @@ class ASCiiTable:
 #       ["Smith, James", "james.smithk@wright.edu", "Clemson", "Stripper"],
 #]
 
-#my_Table = MyTable(table, 80)
+#my_Table = ASCiiTable(table, 80)
 
 
 #my_Table.output_table()
