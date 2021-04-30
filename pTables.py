@@ -1,6 +1,9 @@
 
 import prettytable
 
+"""
+This module is designed to print the data returned from the Monster Hunter World bot.  
+"""
 
 class ASCiiTable:
 
@@ -13,7 +16,7 @@ class ASCiiTable:
         self.header = []
         self.data_row_length = 0
         self._make_table()
-        self._get_data_row_length()
+        self._set_data_row_length()
 
     def is_table_empty(self):
         """
@@ -22,11 +25,11 @@ class ASCiiTable:
         """
         return self.table_length == 0
 
-    def clear_my_table(self):
+    def delete_table(self):
         """
-        Clears the table of all its rows.
+        Clears the table
         """
-        self._t.clear_rows()
+        self._t.clear()
 
     def delete_a_row(self, row_number):
         """
@@ -37,8 +40,10 @@ class ASCiiTable:
 
         row_number = int(row_number)
         row_number -= 1
-        if row_number >= 1 and row_number <= self.dataRowLength-1 :
+        if row_number >= 0 and row_number <= self.data_row_length -1 :
             self._t.del_row(row_number)
+            self.data_row_length -= 1
+            self.table_length -= 1
 
     def output_table(self):
         """
@@ -66,6 +71,32 @@ class ASCiiTable:
             if s in self.header:
                 return self._t.get_string(sortBy=s)
 
+    def get_table_length(self):
+        """
+        :return: table length instance variable
+        """
+        return self.table_length
+
+    def get_data_row_length(self):
+        """
+        :return: number of data rows in table
+        """
+        return self.data_row_length
+
+    def get_max_width(self):
+        """
+        :return: the max width instance variable
+        """
+        return self.max_width
+
+    def get_total_width_of_columns(self):
+        """
+        :return: the sum of all max length strings in each column in the matrix table of an ACSii instance
+        """
+        return sum(self.max_column_width)
+
+
+
 
 
 
@@ -75,7 +106,7 @@ class ASCiiTable:
 ########################################################################################################################
 ########################################################################################################################
 
-    def _get_data_row_length(self):
+    def _set_data_row_length(self):
         """
         Private function to class ASCiiTable
 .
@@ -85,9 +116,11 @@ class ASCiiTable:
         """
 
         if not self.is_table_empty():
-            self.dataRowLength = len(self.matrix_table[1:])
+            self.data_row_length = len(self.matrix_table[1:])
+        else:
+            self.data_row_length = 0
 
-    def _get_max_column_lengths(self):
+    def _set_max_column_lengths(self):
         """
          Private function to class ASCiiTable
 .
@@ -100,17 +133,7 @@ class ASCiiTable:
             for i in range(len(self.header)):
                 self.max_column_width.append(max([sub[i] for sub in [[len(word) for word in index] for index in self.matrix_table[:]]]))
 
-    def _is_string_to_long(self, s):
 
-        """
-         Private function to class ASCiiTable.
-         Function tests whether the string passed is longer or equal to the member variable self.maxWidth.
-
-        :param s: String passed by caller
-        :return: boolean value
-        """
-        s = str(s)
-        return len(s) >= self.max_width
 
     @staticmethod
     def _decrement_column_width(column_width):
@@ -189,6 +212,9 @@ class ASCiiTable:
         resizing them if needed.
         :return: Nothing
         """
+        if self.get_table_length() < 1:
+            self.max_width = 0
+            return
         self._adjust_each_column_width()
         self._adjust_total_width_of_table()
 
@@ -198,6 +224,8 @@ class ASCiiTable:
         Function loops through and installs the pre calculated column widths into the prettyTable instance.
         :return: Nothing
         """
+        if self.get_table_length() < 1:
+            return
         for i in range(len(self.header)):
             self._t.max_width[self.header[i]] = self.max_column_width[i]
 
@@ -208,6 +236,8 @@ class ASCiiTable:
         instance (_t).
         :return: nothing
         """
+        if self.get_table_length() < 1:
+            return
         self._t.field_names = self.header
         [self._t.add_row(i) for i in self.matrix_table[1:]]
         self._set_column_widths()
@@ -221,21 +251,12 @@ class ASCiiTable:
         """
         if not self.is_table_empty():
             self.header = self.matrix_table[0]
-            self._get_max_column_lengths()
+            self._set_max_column_lengths()
             self._compute_table_size()
             self._create_pretty_table()
 
 
-table1 = [["Name", "Email", "Location", "Occupation"],
-        ["Rupp, Josh", "JMan@yahoo.com", "Atlanta", "Police Officer"],
-        ["Buck, Eric", "erick.buck@wright.edu", "Dayton", "Professor"],
-      ["Smith, James", "james.smithk@wright.edu", "Clemson", "Stripper"],
-]
 
-my_Table = ASCiiTable(table1, 45)
-
-
-my_Table.output_table()
 
 
 
